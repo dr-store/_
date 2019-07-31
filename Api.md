@@ -2,6 +2,6 @@
 
 | url | type | values |
 | --- | ---  | ---    |
-| POST | /api/v1/datas/tops | appkey |
-| POST | /api/v1/datas/pages | appkey |
-| POST | /api/v1/datas/search_barcode | appkey, barcode |
+| POST | /api/v2/dr/tops | appkey |
+| POST | /api/v2/dr/pages | appkey |
+| POST | /api/v2/dr/search_barcode | appkey, barcode |
