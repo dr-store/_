@@ -141,8 +141,6 @@ class DrController extends V2Controller {
     return $data;
   }
 
-
-
   private static function _query_dr($queryname, $one_record = true) {
     $file = file_get_contents("https://www.dr.com.tr/Search?q=" . $queryname);
 
@@ -159,11 +157,9 @@ class DrController extends V2Controller {
     preg_match_all("'<a href=\"(.*?)\" class=\"who mb10\">(.*?)</a>'si", $file, $publishers);
     $_publishers = $publishers[2];
 
-
-      // preg_match_all("'<span class=\"name\" id=\"brandName\">(.*?)</span>'si", $file, $authors);
+    // preg_match_all("'<span class=\"name\" id=\"brandName\">(.*?)</span>'si", $file, $authors);
     preg_match_all("'<a href=\"(.*?)\" class=\"who\">(.*?)</a>'si", $file, $authors);
     $_authors = $authors[2];
-
 
     if (isset($_names[0])) {
       if ($one_record) {
@@ -186,6 +182,7 @@ class DrController extends V2Controller {
           "author" => $_author
         ];
       } else {
+
         $datas = [];
         foreach ($_names as $i => $value) {
           $datas[]= [
@@ -196,25 +193,26 @@ class DrController extends V2Controller {
             "author" => $_authors[$i]
           ];
         }
+
         $data = $datas;
       }
     } else {
       $data = NULL;
     }
 
-      // $_name = mb_convert_encoding($_names[0],  'ISO-8859-1', 'UTF-8');
-      //  $_name = utf8_decode($_name);
-      // $_name = mb_convert_encoding($_name, "UTF-8", "ISO-8859-1");
+    // $_name = mb_convert_encoding($_names[0],  'ISO-8859-1', 'UTF-8');
+    //  $_name = utf8_decode($_name);
+    // $_name = mb_convert_encoding($_name, "UTF-8", "ISO-8859-1");
 
-      // $_name = mb_convert_encoding($_name, 'UTF-8', mb_detect_encoding($_name, 'UTF-8, ISO-8859-1', true));
-      // $_name = iconv('ASCII', 'UTF-8//IGNORE', $_name);
-      // $_name = html_entity_decode($_name);
+    // $_name = mb_convert_encoding($_name, 'UTF-8', mb_detect_encoding($_name, 'UTF-8, ISO-8859-1', true));
+    // $_name = iconv('ASCII', 'UTF-8//IGNORE', $_name);
+    // $_name = html_entity_decode($_name);
 
-      // $_name = html_entity_decode($_name, ENT_COMPAT, $encoding = 'UTF-8');
-      // $_name = html_entity_decode($_name, ENT_QUOTES | ENT_HTML5);
-      // $_name = html_entity_decode($_name, ENT_COMPAT, 'ISO-8859-1');
+    // $_name = html_entity_decode($_name, ENT_COMPAT, $encoding = 'UTF-8');
+    // $_name = html_entity_decode($_name, ENT_QUOTES | ENT_HTML5);
+    // $_name = html_entity_decode($_name, ENT_COMPAT, 'ISO-8859-1');
 
-      // $_name = htmlspecialchars_decode($_name, ENT_QUOTES);
+    // $_name = htmlspecialchars_decode($_name, ENT_QUOTES);
 
 
     return $data;
