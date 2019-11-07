@@ -142,6 +142,8 @@ class DrController extends V2Controller {
   }
 
   private static function _query_dr($queryname, $one_record = true) {
+    $queryname = preg_replace("/ /", "%20", $queryname);
+
     $file = file_get_contents("https://www.dr.com.tr/Search?q=" . $queryname);
 
     preg_match_all("'<figure>\s* <a href=\"(.*?)\" class=\"item-name\">\s*<img src=\"(.*?)\" alt=\"(.*?)\"\s*/>\s*</a>\s*</figure>'si", $file, $images);
