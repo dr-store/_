@@ -49,23 +49,22 @@ class DrController extends V2Controller {
   public function tops() {
 
     $drtops = Drtop::load()->order("count", "desc")->limit(3)->get_all();
-
+    $tops = [];
     if ($drtops) {
       if (ApplicationCache::exists("__drtops__")) {
         $tops = ApplicationCache::read("__drtops__");
       } else {
 
-        $tops = [];
         foreach ($drtops as $drtop) {
-          $data = self::_query($drtop->barcode);
+          $data = self::_query($drtop->barcode, false);
           $tops[] = $data;
         }
         ApplicationCache::write("__drtops__", $tops);
       }
-
-      $json = self::_query_json_template(200, "Top 3 ürün ile ilgili veriler", $tops);
-      return $this->render(["text" => $json], ["content_type" => "application/json"]);
     }
+
+    $json = self::_query_json_template(200, "Top 3 ürün ile ilgili veriler", $tops);
+    return $this->render(["text" => $json], ["content_type" => "application/json"]);
   }
 
   public function search_text() {
