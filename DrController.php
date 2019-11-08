@@ -48,18 +48,19 @@ class DrController extends V2Controller {
 
   public function tops() {
 
+    $drtops_savekey = "__drtops__";
     $drtops = Drtop::load()->order("count", "desc")->limit(3)->get_all();
     $tops = [];
+
     if ($drtops) {
-      if (ApplicationCache::exists("__drtops__")) {
-        $tops = ApplicationCache::read("__drtops__");
+      if (ApplicationCache::exists($drtops_savekey)) {
+        $tops = ApplicationCache::read($drtops_savekey);
       } else {
 
-        foreach ($drtops as $drtop) {
-          $data = self::_query($drtop->barcode, false);
-          $tops[] = $data;
-        }
-        ApplicationCache::write("__drtops__", $tops);
+        foreach ($drtops as $drtop)
+          $tops[] = self::_query($drtop->barcode, true);
+
+        ApplicationCache::write($drtops_savekey, $tops);
       }
     }
 
@@ -75,7 +76,6 @@ class DrController extends V2Controller {
     }
 
     $post_text = $_POST["text"];
-
     $data = self::_query($post_text, false);
 
     if ($data) {
@@ -85,7 +85,6 @@ class DrController extends V2Controller {
       $json = self::_query_json_template(404, "Üzgünüm aradığım kaynaklarımda ürününüzü bulamadım.");
       return $this->render(["text" => $json], ["content_type" => "application/json"]);
     }
-
   }
 
   public function search_barcode() {
@@ -96,7 +95,6 @@ class DrController extends V2Controller {
     }
 
     $post_barcode = $_POST["barcode"];
-
     $data = self::_query($post_barcode, true);
 
     if ($data) {
@@ -106,35 +104,37 @@ class DrController extends V2Controller {
       $json = self::_query_json_template(404, "Üzgünüm aradığım kaynaklarımda ürününüzü bulamadım.");
       return $this->render(["text" => $json], ["content_type" => "application/json"]);
     }
-
   }
 
-  private static function _query($barcode, $one_record) {
-    $cachename = "DR_" . $barcode;
+  private static function _query($queryname, $one_record = true) {
+    $cachename = "DR_" . $queryname;
 
     if (ApplicationCache::exists("$cachename")) {
 
       $data = ApplicationCache::read("$cachename");
 
-    } else {
+    } else { // barcode or text search and fetch [data, data], data, NULL
 
-        // barcode
-      if ($data = self::_query_dr($barcode, $one_record)) {
+      $data = self::_query_dr($queryname, $one_record);
 
-        if ($drtop = Drtop::unique(["barcode" => $barcode])) {
-          $drtop->count = $drtop->count + 1;
-          $drtop->updated_at = date("Y-m-d H:i:s");
-          $drtop->save();
-        } else  {
-          Drtop::create(["barcode" => $barcode, "count" => 1, "created_at" => date("Y-m-d H:i:s")]);
-        }
+      if ($data) {
 
         ApplicationCache::write("$cachename", $data);
 
       } else {
         return NULL;
       }
+    }
 
+    // if one_record == true, (queryname=barcode) barcode save
+    if ($one_record) {
+      if ($drtop = Drtop::unique(["barcode" => $queryname])) {
+        $drtop->count = $drtop->count + 1;
+        $drtop->updated_at = date("Y-m-d H:i:s");
+        $drtop->save();
+      } else  {
+        Drtop::create(["barcode" => $queryname, "count" => 1, "created_at" => date("Y-m-d H:i:s")]);
+      }
     }
 
     return $data;
@@ -145,16 +145,21 @@ class DrController extends V2Controller {
 
     $file = file_get_contents("https://www.dr.com.tr/Search?q=" . $queryname);
 
-    preg_match_all("'<figure>\s* <a href=\"(.*?)\" class=\"item-name\">\s*<img src=\"(.*?)\" alt=\"(.*?)\"\s*/>\s*</a>\s*</figure>'si", $file, $images);
-    $_images = $images[2];
+    preg_match_all("'<figure>\s*<a href=\"(.*?)\" class=\"item-name\">\s*<img src=\"(.*?)\" alt=\"(.*?)\"\s*/>\s*</a>\s*</figure>'si", $file, $cards);
+    $_names = $cards[3];
+    $_images = $cards[2];
+    $_links = $cards[1];
 
-    preg_match_all("'<a href=\"(.*?)\" class=\"item-name\">\s*<h3>(.*?)</h3>\s*</a>'si", $file, $names);
-    $_names = $names[2];
+    foreach ($_links as $i => $value)
+      $_links[$i] = "https://www.dr.com.tr" . $value;
+
+    // preg_match_all("'<a href=\"(.*?)\" class=\"item-name\">\s*<h3>(.*?)</h3>\s*</a>'si", $file, $names);
+    // $_names = $names[2];
 
     preg_match_all("'<span class=\"price\">(.*?)</span>'si", $file, $prices);
     $_prices = $prices[1];
 
-      // preg_match_all("'<span class=\"name\">(.*?)</span>'si", $file, $authors);
+    // preg_match_all("'<span class=\"name\">(.*?)</span>'si", $file, $authors);
     preg_match_all("'<a href=\"(.*?)\" class=\"who mb10\">(.*?)</a>'si", $file, $publishers);
     $_publishers = $publishers[2];
 
@@ -165,20 +170,25 @@ class DrController extends V2Controller {
     if (isset($_names[0])) {
       if ($one_record) {
 
-        $_image = $_images[0];
-
         $_name = $_names[0];
+
         // remove TL crachter
         $_price = preg_replace("/[^0-9,.|]/", "", $_prices[0]);
+
+        $_image = $_images[0];
+
+        $_link = $_links[0];
 
         $_publisher = $_publishers[0];
 
         $_author = $_authors[0];
 
         $data = [
+          "barcode" => $queryname,
           "name" => $_name,
           "price" => $_price,
           "image" => $_image,
+          "link" => $_link,
           "publisher" => $_publisher,
           "author" => $_author
         ];
@@ -190,6 +200,7 @@ class DrController extends V2Controller {
             "name" => $_names[$i],
             "price" => $_prices[$i],
             "image" => $_images[$i],
+            "link" => $_links[$i],
             "publisher" => $_publishers[$i],
             "author" => $_authors[$i]
           ];
@@ -215,10 +226,7 @@ class DrController extends V2Controller {
 
     // $_name = htmlspecialchars_decode($_name, ENT_QUOTES);
 
-
     return $data;
-
   }
-
 }
 ?>
