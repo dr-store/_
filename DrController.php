@@ -125,7 +125,8 @@ class DrController extends V2Controller {
         return NULL;
       }
     }
-
+    
+    // TOP COUNT START
     // if one_record == true, (queryname=barcode) barcode save
     if ($one_record) {
       if ($drtop = Drtop::unique(["barcode" => $queryname])) {
@@ -136,6 +137,7 @@ class DrController extends V2Controller {
         Drtop::create(["barcode" => $queryname, "count" => 1, "created_at" => date("Y-m-d H:i:s")]);
       }
     }
+    // TOP COUNT END
 
     return $data;
   }
@@ -213,7 +215,7 @@ class DrController extends V2Controller {
     }
 
     // $_name = mb_convert_encoding($_names[0],  'ISO-8859-1', 'UTF-8');
-    //  $_name = utf8_decode($_name);
+    // $_name = utf8_decode($_name);
     // $_name = mb_convert_encoding($_name, "UTF-8", "ISO-8859-1");
 
     // $_name = mb_convert_encoding($_name, 'UTF-8', mb_detect_encoding($_name, 'UTF-8, ISO-8859-1', true));
