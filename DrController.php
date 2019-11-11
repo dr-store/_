@@ -60,7 +60,7 @@ class DrController extends V2Controller {
         foreach ($drtops as $drtop)
           $tops[] = self::_query($drtop->barcode, true);
 
-        ApplicationCache::write($drtops_savekey, $tops);
+        // ApplicationCache::write($drtops_savekey, $tops);
       }
     }
 
@@ -119,13 +119,13 @@ class DrController extends V2Controller {
 
       if ($data) {
 
-        ApplicationCache::write("$cachename", $data);
+        // ApplicationCache::write("$cachename", $data);
 
       } else {
         return NULL;
       }
     }
-    
+
     // TOP COUNT START
     // if one_record == true, (queryname=barcode) barcode save
     if ($one_record) {
@@ -145,7 +145,7 @@ class DrController extends V2Controller {
   private static function _query_dr($queryname, $one_record = true) {
     $queryname = preg_replace("/ /", "%20", $queryname);
 
-    $file = file_get_contents("https://www.dr.com.tr/Search?q=" . $queryname);
+    $file = file_get_contents("https://www.dr.com.tr/search?q=" . $queryname);
 
     preg_match_all("'<figure>\s*<a href=\"(.*?)\" class=\"item-name\">\s*<img src=\"(.*?)\" alt=\"(.*?)\"\s*/>\s*</a>\s*</figure>'si", $file, $cards);
     $_names = $cards[3];
@@ -155,27 +155,44 @@ class DrController extends V2Controller {
     foreach ($_links as $i => $value)
       $_links[$i] = "https://www.dr.com.tr" . $value;
 
-    // preg_match_all("'<a href=\"(.*?)\" class=\"item-name\">\s*<h3>(.*?)</h3>\s*</a>'si", $file, $names);
-    // $_names = $names[2];
+    preg_match_all("'<div class=\"prices\">\s*(.*?)\s*</div>'si", $file, $prices_all);
+    $_prices_all = $prices_all[1];
 
-    preg_match_all("'<span class=\"price\">(.*?)</span>'si", $file, $prices);
-    $_prices = $prices[1];
+    $_prices_old = [];
+    $_prices = [];
+    $_prices_percent = [];
+    foreach ($_prices_all as $i => $value) {
+
+      preg_match_all("'<span\s*.*?>(.*?)</span>'si", $value, $output);
+      $_output = $output[1];
+      if (count($_output) == 3) {
+        $_prices_old[$i] = preg_replace("/[^0-9,.|]/", "", $_output[0]);
+        $_prices[$i] = preg_replace("/[^0-9,.|]/", "", $_output[1]);
+        $_prices_percent[$i] = preg_replace("/[%]/", "", $_output[2]);
+      }
+      else {
+        $_prices_old[$i] = NULL;
+        $_prices[$i] = preg_replace("/[^0-9,.|]/", "", $_output[0]);
+        $_prices_percent[$i] = NULL;
+      }
+    }
 
     // preg_match_all("'<span class=\"name\">(.*?)</span>'si", $file, $authors);
-    preg_match_all("'<a href=\"(.*?)\" class=\"who mb10\">(.*?)</a>'si", $file, $publishers);
-    $_publishers = $publishers[2];
+    preg_match_all("'class=\"who mb10\">(.*?)</'si", $file, $publishers);
+    $_publishers = $publishers[1];
 
     // preg_match_all("'<span class=\"name\" id=\"brandName\">(.*?)</span>'si", $file, $authors);
-    preg_match_all("'<a href=\"(.*?)\" class=\"who\">(.*?)</a>'si", $file, $authors);
-    $_authors = $authors[2];
+    preg_match_all("'class=\"who\">(.*?)</'si", $file, $authors);
+    $_authors = $authors[1];
 
     if (isset($_names[0])) {
       if ($one_record) {
 
         $_name = $_names[0];
 
-        // remove TL crachter
-        $_price = preg_replace("/[^0-9,.|]/", "", $_prices[0]);
+        $_price = $_prices[0];
+        $_price_old = $_prices_old[0];
+        $_price_percent = $_prices_percent[0];
 
         $_image = $_images[0];
 
@@ -189,6 +206,8 @@ class DrController extends V2Controller {
           "barcode" => $queryname,
           "name" => $_name,
           "price" => $_price,
+          "price_old" => $_price_old,
+          "price_percent" => $_price_percent,
           "image" => $_image,
           "link" => $_link,
           "publisher" => $_publisher,
@@ -201,6 +220,8 @@ class DrController extends V2Controller {
           $datas[]= [
             "name" => $_names[$i],
             "price" => $_prices[$i],
+            "price_old" => $_prices_old[$i],
+            "price_percent" => $_prices_percent[$i],
             "image" => $_images[$i],
             "link" => $_links[$i],
             "publisher" => $_publishers[$i],
