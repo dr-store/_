@@ -46,6 +46,14 @@ class DrController extends V2Controller {
       return $this->render(["text" => $json], ["content_type" => "application/json"]);
     }
 
+    public function top_news() {
+
+    	$data = self::_cache_top("https://www.dr.com.tr/Kategori_/Kitap/En-Yeniler/10001/3");
+
+      $json = self::_query_json_template(200, "Top Yeniler", $data);
+      return $this->render(["text" => $json], ["content_type" => "application/json"]);
+    }
+
     public function top_books() {
 
       $data = self::_cache_top("https://www.dr.com.tr/CokSatanlar/Kitap");
