@@ -13,7 +13,7 @@
 
 | url | name | type | values | status | 
 | --- | ---  | ---  |   ---  | OK |
-| POST | . | /api/v4/pages | appkey | OK | 
+| POST | ooo | /api/v4/pages | appkey | OK | 
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
 | POST | D&R | /api/v4/dr/news | appkey | OK | 
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
