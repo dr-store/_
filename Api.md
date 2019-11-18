@@ -27,3 +27,7 @@
 | POST | Kidega | /api/v4/kidega/tops | appkey | OK |
 | POST | Kidega | /api/v4/kidega/news | appkey | OK |
 | POST | Kidega | /api/v4/kidega/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Bkm | /api/v4/bkm/tops | appkey | OK |
+| POST | Bkm | /api/v4/bkm/news | appkey | OK |
+| POST | Bkm | /api/v4/bkm/search | appkey, text | OK |
