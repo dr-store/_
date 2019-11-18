@@ -23,3 +23,7 @@
 | POST | Pandora | /api/v4/pandora/tops | appkey | OK |
 | POST | Pandora | /api/v4/pandora/news | appkey | OK |
 | POST | Pandora | /api/v4/pandora/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Kidega | /api/v4/kidega/tops | appkey | OK |
+| POST | Kidega | /api/v4/kidega/news | appkey | OK |
+| POST | Kidega | /api/v4/kidega/search | appkey, text | OK |
