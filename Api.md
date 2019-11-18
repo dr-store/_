@@ -31,3 +31,7 @@
 | POST | Bkm | /api/v4/bkm/tops | appkey | OK |
 | POST | Bkm | /api/v4/bkm/news | appkey | OK |
 | POST | Bkm | /api/v4/bkm/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Kitapsec | /api/v4/kitapsec/tops | appkey | OK |
+| POST | Kitapsec | /api/v4/kitapsec/news | appkey | OK |
+| POST | Kitapsec | /api/v4/kitapsec/search | appkey, text | OK |
