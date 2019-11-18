@@ -71,7 +71,7 @@ class KidegaController extends V4Controller {
 
     $post_text = $_POST["text"];
     $post_text = preg_replace("/ /", "%20", $post_text);
-    $data = self::_cache_search("https://kidega.com/arama?query==" . $post_text);
+    $data = self::_cache_search("https://kidega.com/arama?query=" . $post_text);
 
     if ($data) {
       $json = self::_query_json_template(200, "Başarılı istek", $data);
