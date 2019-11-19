@@ -8,6 +8,11 @@
 | POST | APP | /api/v4/app/tops | appkey, service | OK |
 | POST | APP | /api/v4/app/search | appkey, service | OK |
 | - | -  | -  | -  | - |
+| POST | APP | /api/v4/app/all_news | appkey | OK |
+| POST | APP | /api/v4/app/all_tops | appkey | OK |
+| POST | APP | /api/v4/app/all_search | appkey | OK |
+| - | -  | -  | -  | - |
+| - | -  | -  | -  | - |
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
 | POST | D&R | /api/v4/dr/news | appkey | OK | 
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
