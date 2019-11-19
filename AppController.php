@@ -2,38 +2,47 @@
 
 class AppController extends V4Controller {
 
-
   const SERVICES = [
     [
-      "id" => 0,
       "name" => "D&R Store",
       "image" => "http://www.akgenseeds.com/app/assets/img/1.png",
       "subname" => "dr"
     ],
+
     [
-      "id" => 1,
-      "name" => "Hepsiburada",
-      "image" => "http://www.akgenseeds.com/app/assets/img/2.png",
-      "subname" => "hb"
-    ],
-    [
-      "id" => 2,
       "name" => "Idefix",
       "image" => "http://www.akgenseeds.com/app/assets/img/3.png",
       "subname" => "idefix"
     ],
     [
-      "id" => 3,
       "name" => "Pandora",
       "image" => "http://www.akgenseeds.com/app/assets/img/4.png",
       "subname" => "pandora"
     ],
     [
-      "id" => 4,
       "name" => "Kidega",
       "image" => "http://www.akgenseeds.com/app/assets/img/5.png",
       "subname" => "kidega"
+    ],
+    [
+      "name" => "Bkm",
+      "image" => "http://www.akgenseeds.com/app/assets/img/6.png",
+      "subname" => "bkm"
+    ],
+
+    [
+      "name" => "Kitapsec",
+      "image" => "http://www.akgenseeds.com/app/assets/img/7.png",
+      "subname" => "kitapsec"
     ]
+
+    /*
+    [
+      "name" => "Hepsiburada",
+      "image" => "http://www.akgenseeds.com/app/assets/img/2.png",
+      "subname" => "hb"
+    ],
+    */
   ];
 
   public function pages() {
@@ -135,6 +144,54 @@ class AppController extends V4Controller {
     $result = $response->body;
 
     return $this->render(["text" => $result], ["content_type" => "application/json"]);
+  }
+
+  public function all_news() {
+    $datas = [];
+    foreach (self::SERVICES as $id => $service) {
+
+      $subname = $service["subname"];
+
+      $http = new ApplicationHttp();
+      $response = $http->post("http://www.akgenseeds.com/api/v4/" . $subname . "/news", $_POST);
+      $result = $response->body;
+      $datas[$subname] = json_decode($result);
+    }
+
+    $json = self::_query_json_template(200, "Tüm En Yeniler", $datas);
+    return $this->render(["text" => $json], ["content_type" => "application/json"]);
+  }
+
+  public function all_tops() {
+    $datas = [];
+    foreach (self::SERVICES as $id => $service) {
+
+      $subname = $service["subname"];
+
+      $http = new ApplicationHttp();
+      $response = $http->post("http://www.akgenseeds.com/api/v4/" . $subname . "/tops", $_POST);
+      $result = $response->body;
+      $datas[$subname] = json_decode($result);
+    }
+
+    $json = self::_query_json_template(200, "Tüm En Gözdeler", $datas);
+    return $this->render(["text" => $json], ["content_type" => "application/json"]);
+  }
+
+  public function all_search() {
+    $datas = [];
+    foreach (self::SERVICES as $id => $service) {
+
+      $subname = $service["subname"];
+
+      $http = new ApplicationHttp();
+      $response = $http->post("http://www.akgenseeds.com/api/v4/" . $subname . "/search", $_POST);
+      $result = $response->body;
+      $datas[$subname] = json_decode($result);
+    }
+
+    $json = self::_query_json_template(200, "Tüm Aramalar", $datas);
+    return $this->render(["text" => $json], ["content_type" => "application/json"]);
   }
 
 }
