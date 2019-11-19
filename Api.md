@@ -6,7 +6,7 @@
 | POST | APP | /api/v4/app/pages | appkey | OK |
 | POST | APP | /api/v4/app/news | appkey, service | OK |
 | POST | APP | /api/v4/app/tops | appkey, service | OK |
-| POST | APP | /api/v4/app/search | appkey, text, service | OK |
+| POST | APP | /api/v4/app/search | appkey, service, text | OK |
 | POST | APP | /api/v4/app/all_news | appkey | OK |
 | POST | APP | /api/v4/app/all_tops | appkey | OK |
 | POST | APP | /api/v4/app/all_search | appkey, text | OK |
