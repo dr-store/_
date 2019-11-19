@@ -40,6 +40,6 @@
 | POST | Kitapsec | /api/v4/kitapsec/news | appkey | OK |
 | POST | Kitapsec | /api/v4/kitapsec/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Ucuzkitapal | /api/v4/ucuzkitapal/tops | appkey | OK |
-| POST | Ucuzkitapal | /api/v4/ucuzkitapal/news | appkey | OK |
-| POST | Ucuzkitapal | /api/v4/ucuzkitapal/search | appkey, text | OK |
+| POST | Ucuzkitapal | /api/v4/uka/tops | appkey | OK |
+| POST | Ucuzkitapal | /api/v4/uka/news | appkey | OK |
+| POST | Ucuzkitapal | /api/v4/uka/search | appkey, text | OK |
