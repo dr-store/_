@@ -95,7 +95,7 @@ class BkmController extends V4Controller {
       $file = file_get_contents($query_url);
 
 
-      preg_match_all("'<span itemprop=\"image\" content=\"(.*?)\"></span>'si", $file, $images);
+      preg_match_all("'<span class=\"imgInner\">\s*<img data-type=\"\" src=\"(.*?)\"'si", $file, $images);
       $_images = $images[1];
 
       preg_match_all("'<div class=\"box col-12 text-center\">\s*<div class=\"row\">\s*<a href=\"(.*?)\" title=\"(.*?)\" class=\"fl col-12 text-description detailLink\">\s*(.*?)\s*</a>\s*<a href=\"(.*?)\" title=\"(.*?)\" class=\"col col-12 text-title mt\">(.*?)</a>\s*<a href=\"/(.*?)\" title=\"(.*?)\" class=\"fl col-12 text-title\" id=\"productModelText\">(.*?)</a>\s*</div>\s*</div>'si", $file, $cards);
@@ -107,7 +107,6 @@ class BkmController extends V4Controller {
       foreach ($_links as $i => $value)
         $_links[$i] = "https://www.bkmkitap.com" . $value;
 
-
       preg_match_all("'<div class=\"fl col-12 d-flex productPrice\">(.*?)</div>\s*</div>'si", $file, $prices_all);
       $_prices_all = $prices_all[0];
 
@@ -117,13 +116,14 @@ class BkmController extends V4Controller {
 
       foreach ($_prices_all as $key => $value) {
 
-        preg_match_all("'<div class=\"text-line discountedPrice\">(.*?)<span class=\"col fr passive productDiscount\" lang=\"tr\">(.*?)</span>\s*</div>\s*<div class=\"col col-12 currentPrice\">(.*?)</div>'si", $file, $output);
+        preg_match_all("'<div class=\"text-line discountedPrice\">(.*?)<span class=\"col fr passive productDiscount\" lang=\"tr\">(.*?)</span>\s*</div>\s*<div class=\"col col-12 currentPrice\">(.*?)</div>'si", $value, $output);
 
         if (!empty($output[0][0])) {
 
           $_prices_percent[] = preg_replace("/[^0-9,.|]/", "", $output[2][0]);
           $_prices[] = preg_replace("/[^0-9,.|]/", "", $output[3][0]);
           $_prices_old[] = preg_replace("/[^0-9,.|]/", "", $output[1][0]);
+          continue;
         }
 
         preg_match_all("'<div class=\"col col-12 currentPrice\">(.*?)</div>'si", $value, $output);
@@ -133,6 +133,7 @@ class BkmController extends V4Controller {
           $_prices_percent[] = NULL;
           $_prices[] = preg_replace("/[^0-9,.|]/", "", $output[1][0]);
           $_prices_old[] = NULL;
+          continue;
         }
       }
 
