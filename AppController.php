@@ -4,36 +4,52 @@ class AppController extends V4Controller {
 
   const SERVICES = [
     [
+      "id" => "0",
       "name" => "D&R Store",
       "image" => "http://www.akgenseeds.com/app/assets/img/1.png",
       "subname" => "dr"
     ],
-
     [
+      "id" => "1",
       "name" => "Idefix",
       "image" => "http://www.akgenseeds.com/app/assets/img/3.png",
       "subname" => "idefix"
     ],
     [
+      "id" => "2",
       "name" => "Pandora",
       "image" => "http://www.akgenseeds.com/app/assets/img/4.png",
       "subname" => "pandora"
     ],
     [
+      "id" => "3",
       "name" => "Kidega",
       "image" => "http://www.akgenseeds.com/app/assets/img/5.png",
       "subname" => "kidega"
     ],
     [
+      "id" => "4",
       "name" => "Bkm",
       "image" => "http://www.akgenseeds.com/app/assets/img/6.png",
       "subname" => "bkm"
     ],
-
     [
+      "id" => "5",
       "name" => "Kitapsec",
       "image" => "http://www.akgenseeds.com/app/assets/img/7.png",
       "subname" => "kitapsec"
+    ],
+    [
+      "id" => "6",
+      "name" => "Ucuz Kitap Al",
+      "image" => "http://www.akgenseeds.com/app/assets/img/8.png",
+      "subname" => "uka"
+    ],
+    [
+      "id" => "7",
+      "name" => "",
+      "image" => "http://www.akgenseeds.com/app/assets/img/9.png",
+      "subname" => "amazon"
     ]
 
     /*
@@ -180,14 +196,22 @@ class AppController extends V4Controller {
 
   public function all_search() {
     $datas = [];
+    $data = [];
     foreach (self::SERVICES as $id => $service) {
 
       $subname = $service["subname"];
+      $id = $service["id"];
+      $name = $service["name"];
+      $image = $service["image"];
 
       $http = new ApplicationHttp();
       $response = $http->post("http://www.akgenseeds.com/api/v4/" . $subname . "/search", $_POST);
       $result = $response->body;
-      $datas[$subname] = json_decode($result);
+      $data["id"] = $id;
+      $data["name"] = $name;
+      $data["image"] = $image;
+      $data["result"] = json_decode($result);
+      $datas[] = $data;
     }
 
     $json = self::_query_json_template(200, "Tüm Aramalar", $datas);
