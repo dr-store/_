@@ -43,3 +43,7 @@
 | POST | Ucuzkitapal | /api/v4/uka/tops | appkey | OK |
 | POST | Ucuzkitapal | /api/v4/uka/news | appkey | OK |
 | POST | Ucuzkitapal | /api/v4/uka/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Amazon | /api/v4/amazon/tops | appkey | CLOSE |
+| POST | Amazon | /api/v4/amazon/news | appkey | CLOSE |
+| POST | Amazon | /api/v4/amazon/search | appkey, text | OK |
