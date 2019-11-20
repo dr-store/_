@@ -16,9 +16,9 @@
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Hepsiburada | /api/v4/hb/news | appkey | OK |
-| POST | Hepsiburada | /api/v4/hb/tops | appkey | OK |
-| POST | Hepsiburada | /api/v4/hb/search | appkey, text | OK |
+| POST | Hepsiburada | /api/v4/hb/news | appkey | CLOSE |
+| POST | Hepsiburada | /api/v4/hb/tops | appkey | CLOSE |
+| POST | Hepsiburada | /api/v4/hb/search | appkey, text | CLOSE |
 | - | -  | -  | -  | - |
 | POST | Idefix | /api/v4/idefix/news | appkey | OK |
 | POST | Idefix | /api/v4/idefix/tops | appkey | OK |
@@ -47,3 +47,8 @@
 | POST | Amazon | /api/v4/amazon/news | appkey | OK |
 | POST | Amazon | /api/v4/amazon/tops | appkey | OK |
 | POST | Amazon | /api/v4/amazon/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Kitapkoala | /api/v4/kitapkoala/news | appkey | CLOSE |
+| POST | Kitapkoala | /api/v4/kitapkoala/tops | appkey | CLOSE |
+| POST | Kitapkoala | /api/v4/kitapkoala/search | appkey, text | CLOSE |
+
