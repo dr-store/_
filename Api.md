@@ -48,7 +48,7 @@
 | POST | Amazon | /api/v4/amazon/tops | appkey | OK |
 | POST | Amazon | /api/v4/amazon/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Kitapkoala | /api/v4/kitapkoala/news | appkey | CLOSE |
-| POST | Kitapkoala | /api/v4/kitapkoala/tops | appkey | CLOSE |
-| POST | Kitapkoala | /api/v4/kitapkoala/search | appkey, text | CLOSE |
+| POST | Kitapkoala | /api/v4/kitapkoala/news | appkey | OK |
+| POST | Kitapkoala | /api/v4/kitapkoala/tops | appkey | OK |
+| POST | Kitapkoala | /api/v4/kitapkoala/search | appkey, text | OK |
 
