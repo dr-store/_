@@ -12,38 +12,38 @@
 | POST | APP | /api/v4/app/all_search | appkey, text | OK |
 | - | -  | -  | -  | - |
 | - | -  | -  | -  | - |
+| POST | D&R | /api/v4/dr/news | appkey | OK |
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
-| POST | D&R | /api/v4/dr/news | appkey | OK | 
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Hepsiburada | /api/v4/hb/tops | appkey | OK |
 | POST | Hepsiburada | /api/v4/hb/news | appkey | OK |
+| POST | Hepsiburada | /api/v4/hb/tops | appkey | OK |
 | POST | Hepsiburada | /api/v4/hb/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Idefix | /api/v4/idefix/tops | appkey | OK |
 | POST | Idefix | /api/v4/idefix/news | appkey | OK |
+| POST | Idefix | /api/v4/idefix/tops | appkey | OK |
 | POST | Idefix | /api/v4/idefix/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Pandora | /api/v4/pandora/tops | appkey | OK |
 | POST | Pandora | /api/v4/pandora/news | appkey | OK |
+| POST | Pandora | /api/v4/pandora/tops | appkey | OK |
 | POST | Pandora | /api/v4/pandora/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Kidega | /api/v4/kidega/tops | appkey | OK |
 | POST | Kidega | /api/v4/kidega/news | appkey | OK |
+| POST | Kidega | /api/v4/kidega/tops | appkey | OK |
 | POST | Kidega | /api/v4/kidega/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Bkm | /api/v4/bkm/tops | appkey | OK |
 | POST | Bkm | /api/v4/bkm/news | appkey | OK |
+| POST | Bkm | /api/v4/bkm/tops | appkey | OK |
 | POST | Bkm | /api/v4/bkm/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Kitapsec | /api/v4/kitapsec/tops | appkey | OK |
 | POST | Kitapsec | /api/v4/kitapsec/news | appkey | OK |
+| POST | Kitapsec | /api/v4/kitapsec/tops | appkey | OK |
 | POST | Kitapsec | /api/v4/kitapsec/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Ucuzkitapal | /api/v4/uka/tops | appkey | OK |
 | POST | Ucuzkitapal | /api/v4/uka/news | appkey | OK |
+| POST | Ucuzkitapal | /api/v4/uka/tops | appkey | OK |
 | POST | Ucuzkitapal | /api/v4/uka/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Amazon | /api/v4/amazon/tops | appkey | CLOSE |
 | POST | Amazon | /api/v4/amazon/news | appkey | CLOSE |
+| POST | Amazon | /api/v4/amazon/tops | appkey | CLOSE |
 | POST | Amazon | /api/v4/amazon/search | appkey, text | OK |
