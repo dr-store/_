@@ -56,6 +56,24 @@ class AppController extends V4Controller {
       "name" => "Kitap Koala",
       "image" => "http://www.akgenseeds.com/app/assets/img/10.png",
       "subname" => "koala"
+    ],
+    [
+      "id" => "9",
+      "name" => "Nobel Kitap",
+      "image" => "http://www.akgenseeds.com/app/assets/img/11.png",
+      "subname" => "nobelkitap"
+    ],
+    [
+      "id" => "10",
+      "name" => "Kitap Sihirbazı",
+      "image" => "http://www.akgenseeds.com/app/assets/img/12.png",
+      "subname" => "kitapsihirbazi"
+    ],
+    [
+      "id" => "10",
+      "name" => "Pelikan Kitap Evi",
+      "image" => "http://www.akgenseeds.com/app/assets/img/13.png",
+      "subname" => "pelikankitabevi"
     ]
 
     /*
