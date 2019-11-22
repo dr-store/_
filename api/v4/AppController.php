@@ -70,7 +70,7 @@ class AppController extends V4Controller {
       "subname" => "kitapsihirbazi"
     ],
     [
-      "id" => "10",
+      "id" => "11",
       "name" => "Pelikan Kitap Evi",
       "image" => "http://www.akgenseeds.com/app/assets/img/13.png",
       "subname" => "pelikankitabevi"
