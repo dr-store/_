@@ -16,9 +16,9 @@
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Hepsiburada | /api/v4/hb/news | appkey | CLOSE |
-| POST | Hepsiburada | /api/v4/hb/tops | appkey | CLOSE |
-| POST | Hepsiburada | /api/v4/hb/search | appkey, text | CLOSE |
+| POST | Hepsiburada | /api/v4/hb/news | appkey | HATA ROBOT |
+| POST | Hepsiburada | /api/v4/hb/tops | appkey | HATA ROBOT |
+| POST | Hepsiburada | /api/v4/hb/search | appkey, text | HATA ROBOT |
 | - | -  | -  | -  | - |
 | POST | Idefix | /api/v4/idefix/news | appkey | OK |
 | POST | Idefix | /api/v4/idefix/tops | appkey | OK |
@@ -56,9 +56,13 @@
 | POST | Nobelkitap | /api/v4/nobelkitap/tops | appkey | OK |
 | POST | Nobelkitap | /api/v4/nobelkitap/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Babil | /api/v4/babil/news | appkey | TODO |
-| POST | Babil | /api/v4/babil/tops | appkey | TODO |
-| POST | Babil | /api/v4/babil/search | appkey, text | TODO |
+| POST | Okuoku | /api/v4/okuoku/news | appkey | HATA JS |
+| POST | Okuoku | /api/v4/okuoku/tops | appkey | HATA JS |
+| POST | Okuoku | /api/v4/okuoku/search | appkey, text | HATA JS |
+| - | -  | -  | -  | - |
+| POST | Babil | /api/v4/babil/news | appkey | HATA SSL |
+| POST | Babil | /api/v4/babil/tops | appkey | HATA SSL |
+| POST | Babil | /api/v4/babil/search | appkey, text | HATA SSL |
 | - | -  | -  | -  | - |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/news | appkey | TODO |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/tops | appkey | TODO |
