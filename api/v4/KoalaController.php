@@ -46,31 +46,9 @@ class KoalaController extends V4Controller {
     return $data;
   }
 
-  private static function _cache_bests_2($query_url) {
-    $cache_name = "DR_BESTS_" . $query_url;
-
-    if (ApplicationCache::exists("$cache_name")) {
-
-      $data = ApplicationCache::read("$cache_name");
-
-    } else {
-      // text search, fetch [data, data] or NULL
-
-      $data = self::_query_bests_2($query_url);
-
-      if ($data) {
-        ;// ApplicationCache::write("$cache_name", $data);
-      } else {
-        return NULL;
-      }
-    }
-
-    return $data;
-  }
-
   public function news() {
 
-    $data = self::_cache_bests_2("https://www.kitapkoala.com/yeni-urunler-1");
+    $data = self::_cache_bests("https://www.kitapkoala.com/yeni-urunler-1");
 
     $json = self::_query_json_template(200, "En Yeniler", $data);
     return $this->render(["text" => $json], ["content_type" => "application/json"]);
@@ -78,7 +56,7 @@ class KoalaController extends V4Controller {
 
   public function tops() {
 
-    $data = self::_cache_bests_2("https://www.kitapkoala.com/cok-satanlar-1");
+    $data = self::_cache_bests("https://www.kitapkoala.com/cok-satanlar-1");
 
     $json = self::_query_json_template(200, "En Gözdeler", $data);
     return $this->render(["text" => $json], ["content_type" => "application/json"]);
@@ -181,72 +159,6 @@ class KoalaController extends V4Controller {
   }
 
   private static function _query_bests($query_url) {
-
-    $file = file_get_contents($query_url);
-
-    preg_match_all("'<a title=\"(.*?)\"\s*class=\"tooltip-ajax\"\s*href=\"(.*?)\">\s*<img class=\"prd_img prd_img_(.*?) lazy\" width=\"100\" height=\"100\" src=\"(.*?)\" data-src=\"(.*?)\"'mi", $file, $cards);
-    $_names = $cards[2];
-    $_links = $cards[3];
-    $_images = $cards[5];
-
-    preg_match_all("'<div class=\"writer\"><a href=\"(.*?)\">(.*?)</a></div>'si", $file, $authors);
-    $_authors = $authors[2];
-
-    preg_match_all("'<div class=\"publisher\"><a href=\"(.*?)\">(.*?)</a></div>'si", $file, $publisher);
-    $_publishers = $publisher[2];
-
-    preg_match_all("'<span class=\"price price_sale convert_cur\" data-price=\"(.*?)\" data-cur-code=\"(.*?)\">'si", $file, $prices);
-    $_prices = $prices[1];
-
-    preg_match_all("'<span class=\"price price_list convert_cur\" data-price=\"(.*?)\" data-cur-code=\"(.*?)\"></span>'si", $file, $prices_old); // ??
-    $_prices_old = $prices_old[1];
-
-    foreach ($_prices_old as $key => $value) {
-
-      if ($value == $_prices[$key]) {
-        $_prices_old[$key] = NULL;
-      }
-    }
-
-    preg_match_all("'<div class=\"image image_b\">(.*?)<div class=\"new_icon\">'si", $file, $all_prices_percent);
-    $_all_prices_percent = $all_prices_percent[1];
-
-    $_prices_percent = [];
-    foreach ($_all_prices_percent as $key => $value) {
-
-      preg_match_all("'<div class=\"discount\"><sub>%</sub>(.*?)</div>'si", $value, $output);
-
-      if (!empty($output[0][0])) {
-        $_prices_percent[$key] = preg_replace("/[^0-9,.|]/", "", $output[1][0]);
-      } else {
-        $_prices_percent[$key] = NULL;
-      }
-    }
-
-    if (isset($_names[0])) {
-
-      $datas = [];
-      foreach ($_names as $i => $value) {
-        $datas[] = [
-        "name" => $_names[$i],
-        "price" => $_prices[$i],
-        "price_old" => $_prices_old[$i],
-        "price_percent" => $_prices_percent[$i],
-        "image" => $_images[$i],
-        "link" => $_links[$i],
-        "publisher" => $_publishers[$i],
-        "author" => $_authors[$i]
-        ];
-      }
-
-      $data = $datas;
-    } else {
-      $data = NULL;
-    }
-
-    return $data;
-  }
-  private static function _query_bests_2($query_url) {
 
     $file = file_get_contents($query_url);
 
