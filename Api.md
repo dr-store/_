@@ -52,9 +52,9 @@
 | POST | Kitapkoala | /api/v4/kitapkoala/tops | appkey | OK |
 | POST | Kitapkoala | /api/v4/kitapkoala/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Nobelkitap | /api/v4/nobelkitap/news | appkey | TODO |
-| POST | Nobelkitap | /api/v4/nobelkitap/tops | appkey | TODO |
-| POST | Nobelkitap | /api/v4/nobelkitap/search | appkey, text | TODO |
+| POST | Nobelkitap | /api/v4/nobelkitap/news | appkey | OK |
+| POST | Nobelkitap | /api/v4/nobelkitap/tops | appkey | OK |
+| POST | Nobelkitap | /api/v4/nobelkitap/search | appkey, text | OK |
 | - | -  | -  | -  | - |
 | POST | Babil | /api/v4/babil/news | appkey | TODO |
 | POST | Babil | /api/v4/babil/tops | appkey | TODO |
