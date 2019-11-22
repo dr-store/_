@@ -63,3 +63,7 @@
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/news | appkey | TODO |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/tops | appkey | TODO |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/search | appkey, text | TODO |
+| - | -  | -  | -  | - |
+| POST | pelikankitabevi | /api/v4/pelikankitabevi/news | appkey | TODO |
+| POST | pelikankitabevi | /api/v4/pelikankitabevi/tops | appkey | TODO |
+| POST | pelikankitabevi | /api/v4/pelikankitabevi/search | appkey, text | TODO |
