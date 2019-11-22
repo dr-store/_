@@ -71,3 +71,7 @@
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/news | appkey | TODO |
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/tops | appkey | TODO |
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/search | appkey, text | TODO |
+| - | -  | -  | -  | - |
+| POST | kitapyurdu | /api/v4/kitapyurdu/news | appkey | TODO |
+| POST | kitapyurdu | /api/v4/kitapyurdu/tops | appkey | TODO |
+| POST | kitapyurdu | /api/v4/kitapyurdu/search | appkey, text | TODO |
