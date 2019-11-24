@@ -2,6 +2,8 @@
 
 | url | name | type | values | status | 
 | --- | ---  | ---  |   ---  | --- |
+| POST | APP | /api/v4/isbn/search | appkey, text | OK |
+| - | -  | -  | -  | - |
 | POST | APP | /api/v4/app/services | appkey | OK |
 | POST | APP | /api/v4/app/pages | appkey | OK |
 | POST | APP | /api/v4/app/news | appkey, service | OK |
@@ -10,6 +12,7 @@
 | POST | APP | /api/v4/app/all_news | appkey | OK |
 | POST | APP | /api/v4/app/all_tops | appkey | OK |
 | POST | APP | /api/v4/app/all_search | appkey, text | OK |
+
 | - | -  | -  | -  | - |
 | - | -  | -  | -  | - |
 | POST | D&R | /api/v4/dr/news | appkey | OK |
