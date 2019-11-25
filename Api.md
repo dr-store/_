@@ -54,14 +54,6 @@
 | POST | Nobelkitap | /api/v4/nobelkitap/tops | appkey | OK |
 | POST | Nobelkitap | /api/v4/nobelkitap/search | appkey, text | OK |
 | - | -  | -  | -  | - |
-| POST | Okuoku | /api/v4/okuoku/news | appkey | YANILGI JS |
-| POST | Okuoku | /api/v4/okuoku/tops | appkey | YANILGI JS |
-| POST | Okuoku | /api/v4/okuoku/search | appkey, text | YANILGI JS |
-| - | -  | -  | -  | - |
-| POST | Babil | /api/v4/babil/news | appkey | YANILGI SSL |
-| POST | Babil | /api/v4/babil/tops | appkey | YANILGI SSL |
-| POST | Babil | /api/v4/babil/search | appkey, text | YANILGI SSL |
-| - | -  | -  | -  | - |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/news | appkey | OK |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/tops | appkey | OK |
 | POST | kitapsihirbazi | /api/v4/kitapsihirbazi/search | appkey, text | OK |
