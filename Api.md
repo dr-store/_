@@ -12,16 +12,11 @@
 | POST | APP | /api/v4/app/all_news | appkey | OK |
 | POST | APP | /api/v4/app/all_tops | appkey | OK |
 | POST | APP | /api/v4/app/all_search | appkey, text | OK |
-
 | - | -  | -  | -  | - |
 | - | -  | -  | -  | - |
 | POST | D&R | /api/v4/dr/news | appkey | OK |
 | POST | D&R | /api/v4/dr/tops | appkey | OK |
 | POST | D&R | /api/v4/dr/search | appkey, text | OK |
-| - | -  | -  | -  | - |
-| POST | Hepsiburada | /api/v4/hb/news | appkey | YANILGI ROBOT |
-| POST | Hepsiburada | /api/v4/hb/tops | appkey | YANILGI ROBOT |
-| POST | Hepsiburada | /api/v4/hb/search | appkey, text | YANILGI ROBOT |
 | - | -  | -  | -  | - |
 | POST | Idefix | /api/v4/idefix/news | appkey | OK |
 | POST | Idefix | /api/v4/idefix/tops | appkey | OK |
@@ -74,6 +69,18 @@
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/news | appkey | OK |
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/tops | appkey | OK |
 | POST | pelikankitabevi | /api/v4/pelikankitabevi/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Hepsiburada | /api/v4/hb/news | appkey | OK |
+| POST | Hepsiburada | /api/v4/hb/tops | appkey | OK |
+| POST | Hepsiburada | /api/v4/hb/search | appkey, text | OK |
+| - | -  | -  | -  | - |
+| POST | Okuoku | /api/v4/okuoku/news | appkey | YANILGI JS |
+| POST | Okuoku | /api/v4/okuoku/tops | appkey | YANILGI JS |
+| POST | Okuoku | /api/v4/okuoku/search | appkey, text | YANILGI JS |
+| - | -  | -  | -  | - |
+| POST | Babil | /api/v4/babil/news | appkey | YANILGI SSL |
+| POST | Babil | /api/v4/babil/tops | appkey | YANILGI SSL |
+| POST | Babil | /api/v4/babil/search | appkey, text | YANILGI SSL |
 | - | -  | -  | -  | - |
 | POST | kitapyurdu | /api/v4/kitapyurdu/news | appkey | TODO |
 | POST | kitapyurdu | /api/v4/kitapyurdu/tops | appkey | TODO |
